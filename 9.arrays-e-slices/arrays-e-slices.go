@@ -25,7 +25,7 @@ func main() {
 	slice = append(slice, 15)
 	fmt.Println(slice)
 
-	// slices são pedaços de um array e trabalha como ponteiro
+	// slices são pedaços de um array e trabalham como ponteiro
 	slice2 := array2[1:3] // o range escolhido tem início inclusivo e final exclusivo
 	fmt.Println(slice2)
 }

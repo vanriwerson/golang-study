@@ -9,7 +9,7 @@
 1. Faça o [download](https://go.dev/dl/) do instalador de acordo com o seu sistema operacional.
     - DICA: prefira uma versão LTS (Long-term Support), como [esta](https://go.dev/dl/go1.18.4.linux-amd64.tar.gz). 
 
-2. Remova instalações anteriores do Go (se houver) de sua máquina:
+2. Remova instalações anteriores da Golang (se houver) de sua máquina:
     - `sudo rm -rf /usr/local/go`.
 
 3. Extraia o arquivo de instalação para a pasta `/usr/local/`.
@@ -22,3 +22,8 @@
 
 5. Verifique se a instalação foi feita com sucesso:
     - O comando `go version` deve retornar algo parecido com `go version go1.18.4 linux/amd64`
+
+## 01.Fundamentals
+
+> Guarda exemplos basilares da linguagem Go. O principal objetivo aqui é saber
+> quais estruturas de dados existem e qual a sintaxe utilizada para implementá-las

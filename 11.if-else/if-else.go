@@ -21,5 +21,5 @@ func main() {
 		fmt.Println("Menor do que zero")
 	}
 
-	// fmt.Println(init) => gera um erro pois a variável init não existe fora do escopo em que foi criada
+	// fmt.Println(init) // gera um erro pois a variável init não existe fora do escopo em que foi criada
 }

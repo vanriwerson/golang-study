@@ -65,3 +65,7 @@ func buscarServidores(c *cli.Context) {
 		fmt.Println(servidor.Host)
 	}
 }
+
+// após rodar o 'go build':
+// ./app-cli ip --host github.com
+// ./app-cli server --host github.com

@@ -7,7 +7,7 @@ import (
 	"log"
 )
 
-type cachorro struct {
+type cachorro struct { // Associando o struct a chaves do JSON
 	Nome  string `json:"nome"`
 	Raca  string `json:"raca"`
 	Idade uint   `json:"idade"`
@@ -31,7 +31,7 @@ func main() {
 	}
 	fmt.Println(c2)
 
-	c2ToJson, erro := json.Marshal(c2) // retorna um array de bytes
+	c2ToJson, erro := json.Marshal(c2)
 	if erro != nil {
 		log.Fatal(erro)
 	}

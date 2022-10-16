@@ -26,4 +26,7 @@
 ## 01.Fundamentals
 
 > Guarda exemplos basilares da linguagem Go. O principal objetivo aqui é saber
-> quais estruturas de dados existem e qual a sintaxe utilizada para implementá-las
+> quais estruturas de dados existem e qual a sintaxe utilizada para implementá-las.
+
+## 02.Aplied-Fundamentals
+> Guarda exemplos da aplicabilidade da Golang no Desenvolvimento Web.

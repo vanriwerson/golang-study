@@ -29,5 +29,15 @@
       <p>Nome: {{ .Nome }}</p>
       <p>Email: {{ .Email }}</p>
     </div>
+
+    <button id="btn">Clique em mim!</button>
+
+    <script>
+      const btn = document.getElementById("btn");
+
+      btn.addEventListener('click', () => {
+        alert("Clicou!")
+      });
+    </script>
   </body>
 </html>

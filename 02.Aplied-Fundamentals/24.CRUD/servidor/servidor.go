@@ -131,3 +131,47 @@ func BuscarUsuario(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 }
+
+func AtualizarUsuario(w http.ResponseWriter, r *http.Request) {
+	parametros := mux.Vars(r)
+
+	ID, erro := strconv.ParseUint(parametros["id"], 10, 32)
+	if erro != nil {
+		w.Write([]byte("Erro ao converter o ID para inteiro"))
+		return
+	}
+
+	corpoDaRequisicao, erro := ioutil.ReadAll(r.Body)
+	if erro != nil {
+		w.Write([]byte("Erro ao ler o corpo da requisição"))
+		return
+	}
+
+	var usuario usuario
+	if erro = json.Unmarshal(corpoDaRequisicao, &usuario); erro != nil {
+		w.Write([]byte("Erro ao converter o usuario para struct"))
+		return
+	}
+
+	// Obs.: Verificar todos os dados necessários antes de abrir a conexão com o banco
+	db, erro := banco.Conectar()
+	if erro != nil {
+		w.Write([]byte("Erro ao conectar com o banco de dados"))
+		return
+	}
+	defer db.Close()
+
+	statement, erro := db.Prepare("UPDATE devbook.usuarios SET nome = ?, email = ? WHERE id = ?")
+	if erro != nil {
+		w.Write([]byte("Erro na criação do Prepared Statement"))
+		return
+	}
+	defer statement.Close()
+
+	if _, erro := statement.Exec(usuario.Nome, usuario.Email, ID); erro != nil {
+		w.Write([]byte("Erro na execução do Prepared Statement"))
+		return
+	}
+
+	w.WriteHeader(http.StatusNoContent)
+}

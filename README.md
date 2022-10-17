@@ -29,5 +29,5 @@
 > quais estruturas de dados existem e qual a sintaxe utilizada para implementá-las.
 
 ## 02.Aplied-Fundamentals
-> Guarda exemplos da aplicabilidade da Golang no Desenvolvimento Web, integração com 
-> Banco de Dados mySQL e um CRUD (Create, Read, Update, Delete) simples.
+> Guarda exemplos de integração da Golang com o Desenvolvimento Web, conexão com 
+> Banco de Dados mySQL, noção de rotas e a implementação um CRUD (Create, Read, Update, Delete).

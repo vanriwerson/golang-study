@@ -1,3 +1,4 @@
+TRUNCATE devbook.usuarios;
 INSERT INTO devbook.usuarios (nome, nick, email, senha)
 VALUES ("Adalberto", "Dadá", "adalberto@email.com", "superSenhaSecreta1"),
 ("Giovane", "Gigio", "giovane@email.com", "superSenhaSecreta2"),

@@ -12,6 +12,7 @@ import (
 var (
 	StringConexaoBanco = ""
 	Porta              = 0
+	SecretKey          []byte
 )
 
 // Inicializa as variáveis de ambiente
@@ -32,4 +33,6 @@ func Carregar() {
 		os.Getenv("MYSQL_ROOT_PASSWORD"),
 		os.Getenv("MYSQL_DB"),
 	)
+
+	SecretKey = []byte(os.Getenv("JWT_SECRET"))
 }

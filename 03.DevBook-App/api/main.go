@@ -3,13 +3,12 @@ package main
 import (
 	"api/src/config"
 	"api/src/router"
-	"crypto/rand"
-	"encoding/base64"
 	"fmt"
 	"log"
 	"net/http"
 )
 
+/*
 func init() { // Usado para gerar o JWT_SECRET com o padrão recomendado
 	chave := make([]byte, 64)
 
@@ -20,6 +19,7 @@ func init() { // Usado para gerar o JWT_SECRET com o padrão recomendado
 	secret := base64.StdEncoding.EncodeToString(chave)
 	fmt.Println(secret)
 }
+*/
 
 func main() {
 	config.Carregar()

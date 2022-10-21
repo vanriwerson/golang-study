@@ -5,6 +5,7 @@ import (
 	"errors"
 	"fmt"
 	"net/http"
+	"strconv"
 	"strings"
 	"time"
 
@@ -35,6 +36,31 @@ func ValidarToken(r *http.Request) error {
 	}
 
 	return errors.New("token inválido")
+}
+
+func ExtrairUsuarioID(r *http.Request) (uint64, error) {
+	tokenString := extrairToken(r)
+
+	token, erro := jwt.Parse(tokenString, retornarChaveDeVerificacao)
+	if erro != nil {
+		return 0, erro
+	}
+
+	if permissoes, ok := token.Claims.(jwt.MapClaims); ok && token.Valid {
+		/*
+			permissoes["usuarioId"] pelo padrão do jwt é salvo no formato float.
+			Aqui, é necessário convertê-lo para string antes de passá-lo como parâmetro
+			para o ParseUint, que irá retornar o usuarioId como uint64
+		*/
+		usuarioID, erro := strconv.ParseUint(fmt.Sprintf("%.0f", permissoes["usuarioId"]), 10, 64)
+		if erro != nil {
+			return 0, erro
+		}
+
+		return usuarioID, nil
+	}
+
+	return 0, errors.New("token inválido")
 }
 
 func extrairToken(r *http.Request) string {

@@ -225,3 +225,23 @@ func (repositorio Usuarios) BuscarSeguindo(usuarioID uint64) ([]modelos.Usuario,
 
 	return usuarios, nil
 }
+
+func (repositorio Usuarios) BuscarSenha(usuarioID uint64) (string, error) {
+	linha, erro := repositorio.db.Query(
+		"SELECT senha FROM devbook.usuarios WHERE id = ?",
+		usuarioID,
+	)
+	if erro != nil {
+		return "", erro
+	}
+	defer linha.Close()
+
+	var usuario modelos.Usuario
+	if linha.Next() {
+		if erro = linha.Scan(&usuario.Senha); erro != nil {
+			return "", erro
+		}
+	}
+
+	return usuario.Senha, nil
+}

@@ -40,7 +40,7 @@ func (repositorio Publicacoes) Buscar(usuarioID uint64) ([]modelos.Publicacao, e
 		`SELECT DISTINCT p.*, u.nick FROM devbook.publicacoes AS p
 		INNER JOIN devbook.usuarios AS u ON u.id = p.autor_id
 		INNER JOIN devbook.seguidores AS s ON p.autor_id = s.usuario_id
-		WHERE u.id = ? OR s.seguidor_id = ?`,
+		WHERE u.id = ? OR s.seguidor_id = ? ORDER BY 1 DESC`,
 		usuarioID, usuarioID,
 	)
 	if erro != nil {

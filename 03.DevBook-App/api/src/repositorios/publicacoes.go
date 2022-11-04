@@ -34,3 +34,33 @@ func (repositorio Publicacoes) Criar(publicacao modelos.Publicacao) (uint64, err
 
 	return uint64(ultimoIdInserido), nil
 }
+
+func (repositorio Publicacoes) BuscarPorId(publicacaoID uint64) (modelos.Publicacao, error) {
+	linha, erro := repositorio.db.Query(
+		`SELECT p.*, u.nick FROM devbook.publicacoes AS p JOIN devbook.usuarios AS u
+		ON p.autor_id = u.id WHERE p.id = ?`,
+		publicacaoID,
+	)
+	if erro != nil {
+		return modelos.Publicacao{}, erro // passando uma publicação vazia para o retorno
+	}
+	defer linha.Close()
+
+	var publicacao modelos.Publicacao
+
+	if linha.Next() {
+		if erro = linha.Scan(
+			&publicacao.ID,
+			&publicacao.Titulo,
+			&publicacao.Conteudo,
+			&publicacao.AutorID,
+			&publicacao.Curtidas,
+			&publicacao.CriadaEm,
+			&publicacao.AutorNick,
+		); erro != nil {
+			return modelos.Publicacao{}, erro
+		}
+	}
+
+	return publicacao, nil
+}

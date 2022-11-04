@@ -1,8 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
 * {
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: 'Lato', 'Arial', sans-serif;
 };
 
 a {
@@ -10,6 +12,7 @@ a {
     color: #3b5998;
     line-height: 1.4;
     text-align: center;
+    margin: 8px auto;
 }
 
 a:hover {
@@ -55,7 +58,7 @@ input::placeholder {
     font-size: 30px;
     color: #3b5998;
     line-height: 1.2;
-    text-align: center;
+    align-items: center;
     width: 100%;
     display: block;
     padding-bottom: 30px;   

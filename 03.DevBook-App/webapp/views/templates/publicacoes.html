@@ -1,3 +1,15 @@
+{{ define "curtidas" }}
+  <span>{{ .Curtidas }} curtidas</span>
+{{ end }}
+
+{{ define "editar" }}
+  <a href="/editar">Editar</a>
+{{ end }}
+
+{{ define "deletar" }}
+  <a href="/deletar">Deletar</a>
+{{ end }}
+
 {{ define "cabecalho-publicacao" }}
   <h1 class="display-4">{{ .Titulo }}</h1>
   <p class="lead">{{ .Conteudo }}</p>
@@ -8,11 +20,17 @@
 {{ define "publicacao-com-permissao" }}
   <div class="jumbotron" data-publicacao-id="{{ .ID }}">
     {{ template "cabecalho-publicacao" . }}
+    <p>
+      {{ template "curtidas" . }}
+      {{ template "editar" }}
+      {{ template "deletar" }}
+    </p>
   </div>
 {{ end }}
 
 {{ define "publicacao-sem-permissao" }}
   <div class="jumbotron" data-publicacao-id="{{ .ID }}">
     {{ template "cabecalho-publicacao" . }}
+    <p>{{ template "curtidas" . }}</p>
   </div>
 {{ end }}

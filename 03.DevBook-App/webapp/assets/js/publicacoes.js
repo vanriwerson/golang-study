@@ -1,6 +1,9 @@
 $('#nova-publicacao').on('submit', criarPublicacao);
+
 $(document).on('click', '.curtir-publicacao', curtirPublicacao);
 $(document).on('click', '.descurtir-publicacao', descurtirPublicacao);
+
+$('#atualizar-publicacao').on('click', atualizarPublicacao);
 
 function criarPublicacao(evento) {
   evento.preventDefault();
@@ -22,7 +25,7 @@ function criarPublicacao(evento) {
 function curtirPublicacao(evento) {
   evento.preventDefault();
 
-  const elementoClicado = $(evento.target) 
+  const elementoClicado = $(evento.target);
   const publicacaoId = elementoClicado.closest('div').data('publicacao-id');
 
   elementoClicado.prop('disabled', true);
@@ -49,7 +52,7 @@ function curtirPublicacao(evento) {
 function descurtirPublicacao(evento) {
   evento.preventDefault();
 
-  const elementoClicado = $(evento.target) 
+  const elementoClicado = $(evento.target);
   const publicacaoId = elementoClicado.closest('div').data('publicacao-id');
 
   elementoClicado.prop('disabled', true);
@@ -71,4 +74,25 @@ function descurtirPublicacao(evento) {
   }).always(function () {
     elementoClicado.prop('disabled', false);
   })
+}
+
+function atualizarPublicacao() {
+  $(this).prop('disabled', true);
+
+  const publicacaoId = $(this).data('publicacao-id');
+
+  $.ajax({
+    url: `/publicacoes/${publicacaoId}`,
+    method: 'PUT',
+    data: {
+      titulo: $('#titulo').val(),
+      conteudo: $('#conteudo').val()
+    }
+  }).done(function() {
+    alert("Publicação atualizada com sucesso!");
+  }).fail(function() {
+    alert("Erro ao editar publicação.");
+  }).always(function() {
+    $('#atualizar-publicacao').prop('disabled', false);
+  });
 }

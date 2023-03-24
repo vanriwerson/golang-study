@@ -21,6 +21,7 @@ func CarregarTelaDeLogin(w http.ResponseWriter, r *http.Request) {
 
 	if cookie["token"] != "" {
 		http.Redirect(w, r, "/home", http.StatusFound)
+		return
 	}
 
 	utils.ExecutarTemplate(w, "login.html", nil)

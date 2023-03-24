@@ -114,7 +114,7 @@ func AtualizarPublicacao(w http.ResponseWriter, r *http.Request) {
 	}
 
 	url := fmt.Sprintf("%s/publicacoes/%d", config.APIURL, publicacaoID)
-	response, erro := requisicoes.FazerRequisicaoComAutenticacao(r, http.MethodPost, url, bytes.NewBuffer(publicacao))
+	response, erro := requisicoes.FazerRequisicaoComAutenticacao(r, http.MethodPut, url, bytes.NewBuffer(publicacao))
 	if erro != nil {
 		respostas.JSON(w, http.StatusInternalServerError, respostas.ErroAPI{Erro: erro.Error()})
 		return

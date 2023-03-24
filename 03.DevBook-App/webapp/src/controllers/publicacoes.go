@@ -51,7 +51,6 @@ func CurtirPublicacao(w http.ResponseWriter, r *http.Request) {
 	if erro != nil {
 		respostas.JSON(w, http.StatusBadRequest, respostas.ErroAPI{Erro: erro.Error()})
 		return
-
 	}
 
 	url := fmt.Sprintf("%s/publicacoes/%d/curtir", config.APIURL, publicacaoID)

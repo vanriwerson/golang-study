@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DevBook - {{ .Usuario.Nome }}</title>
   <link href="/assets/css/bootstrap.css" rel="stylesheet" />
 </head>
+
 <body>
   {{ template "cabecalho" }}
 
   {{ $SeguidoPeloUsuarioLogado := false }}
-
   {{ range .Usuario.Seguidores }}
     {{ if (eq .ID $.UsuarioLogadoID )}}
       {{ $SeguidoPeloUsuarioLogado = true}}
@@ -23,20 +24,21 @@
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">Perfil do Usuário</h5>
+            
             <h6 class="card-subtitle mb-2 text-muted">
               {{ .Usuario.Nome }} - {{ .Usuario.Nick }} - Membro Desde:
-              {{ .Usuario.CriadoEm.Format "02-01-2006" }}
+              {{ .Usuario.CriadoEm.Format "02/01/2006" }}
             </h6>
 
             <p class="card-text">
-              <a href="#" data-toggle="modal" data-target="#modal-seguidores">
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-seguidores">
                 Seguidores: {{ len .Usuario.Seguidores }}
-              </a>
+              </button>
             </p>
-            <p class="card-text" data-toggle="modal" data-target="#modal-seguindo">
-              <a href="#">
+            <p class="card-text">
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-seguindo">
                 Seguindo: {{ len .Usuario.Seguindo }}
-              </a>
+              </button>
             </p>
 
             <a href="#" class="card-link">
@@ -59,8 +61,7 @@
       <div class="col-12">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title"> Publicações de {{ .Usuario.Nick }}</h5>
-            
+            <h5 class="card-title"> Publicações do Usuário {{ .Usuario.Nick }}</h5>
             <p class="card-text">
               {{ range .Usuario.Publicacoes }}
                 {{ template "publicacao-sem-permissao" . }}
@@ -75,6 +76,7 @@
       </div>
     </div>
   </div>
+
 
   {{ template "modal-seguidores" .Usuario }}
   {{ template "modal-seguindo" .Usuario }}

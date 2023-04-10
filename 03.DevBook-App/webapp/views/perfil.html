@@ -28,8 +28,8 @@
               </a>
             </p>
 
-            <p class="card-text" data-toggle="modal" data-target="#modal-seguindo">
-              <a href="#">
+            <p class="card-text">
+              <a href="#" data-toggle="modal" data-target="#modal-seguindo">
                 Seguindo: {{ len .Seguindo }}
               </a>
             </p>
@@ -57,12 +57,12 @@
             <h5 class="card-title">Minhas Publicações</h5>
             <p class="card-text">
               {{ range .Publicacoes }}
-              {{ template "publicacao-com-permissao" . }}
+                {{ template "publicacao-com-permissao" . }}
               {{ else }}
-            <p class="text-muted text-center">
-              Nenhuma publicação por enquanto...
-            </p>
-            {{ end }}
+                <p class="text-muted text-center">
+                  Nenhuma publicação por enquanto...
+                </p>
+              {{ end }}
             </p>
           </div>
         </div>
@@ -75,7 +75,6 @@
       </button>
     </a>
   </div>
-
 
   {{ template "rodape" }}
 
